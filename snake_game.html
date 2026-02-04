@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +16,21 @@
             overflow: hidden;
             background-color: #eef1f5;
             background-image:
-                repeating-linear-gradient(0deg, rgba(0,0,0,0.06) 0, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 22px),
-                repeating-linear-gradient(90deg, rgba(0,0,0,0.06) 0, rgba(0,0,0,0.06) 1px, transparent 1px, transparent 22px);
+                repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.06) 0, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 22px),
+                repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0, rgba(0, 0, 0, 0.06) 1px, transparent 1px, transparent 22px);
             background-size: 20px 20px;
             animation: moveGrid 6s linear infinite;
             font-family: 'Arial', sans-serif;
         }
 
         @keyframes moveGrid {
-            0% { background-position: 0 0, 0 0; }
-            100% { background-position: 20px 20px, 20px 20px; }
+            0% {
+                background-position: 0 0, 0 0;
+            }
+
+            100% {
+                background-position: 20px 20px, 20px 20px;
+            }
         }
 
         .game-container {
@@ -39,14 +45,14 @@
         h1 {
             color: #222;
             margin-bottom: 16px;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         #gameCanvas {
             display: block;
             border-radius: 6px;
             background: #000;
-            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.06);
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.06);
         }
 
         .score {
@@ -97,14 +103,14 @@
             border: 2px solid #b6bcc3;
             border-radius: 24px;
             padding: 12px 16px 18px 16px;
-            box-shadow: 0 16px 28px rgba(0,0,0,0.25), inset 0 2px 0 rgba(255,255,255,0.4);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.25), inset 0 2px 0 rgba(255, 255, 255, 0.4);
         }
 
         .screen-bezel {
             background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
             border-radius: 14px;
             padding: 10px;
-            box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05), 0 8px 18px rgba(0,0,0,0.35);
+            box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.05), 0 8px 18px rgba(0, 0, 0, 0.35);
         }
 
         .handheld-row {
@@ -120,35 +126,138 @@
             height: 76px;
             position: relative;
         }
+
         .dpad .bar-h,
         .dpad .bar-v {
             position: absolute;
             background: #3a3f45;
             border-radius: 10px;
-            box-shadow: inset 0 2px 0 rgba(255,255,255,0.15), 0 6px 10px rgba(0,0,0,0.25);
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.15), 0 6px 10px rgba(0, 0, 0, 0.25);
         }
-        .dpad .bar-h { top: 50%; left: 4px; right: 4px; height: 22px; transform: translateY(-50%); }
-        .dpad .bar-v { left: 50%; top: 4px; bottom: 4px; width: 22px; transform: translateX(-50%); }
+
+        .dpad .bar-h {
+            top: 50%;
+            left: 4px;
+            right: 4px;
+            height: 22px;
+            transform: translateY(-50%);
+        }
+
+        .dpad .bar-v {
+            left: 50%;
+            top: 4px;
+            bottom: 4px;
+            width: 22px;
+            transform: translateX(-50%);
+        }
+
+        .dpad-btn {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #4a4f55;
+            border: none;
+            cursor: pointer;
+            transition: all 0.1s;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .dpad-btn:hover {
+            background: #5a5f65;
+        }
+
+        .dpad-btn:active {
+            background: #2a2f35;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            transform: scale(0.95);
+        }
+
+        .dpad-btn.up {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 8px 8px 4px 4px;
+        }
+
+        .dpad-btn.down {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px 4px 8px 8px;
+        }
+
+        .dpad-btn.left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 8px 4px 4px 8px;
+        }
+
+        .dpad-btn.right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 4px 8px 8px 4px;
+        }
+
+        .dpad-btn.up:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .dpad-btn.down:active {
+            transform: translateX(-50%) scale(0.95);
+        }
+
+        .dpad-btn.left:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .dpad-btn.right:active {
+            transform: translateY(-50%) scale(0.95);
+        }
 
         .buttons {
             display: flex;
             align-items: center;
             gap: 12px;
         }
+
         .btn {
             width: 38px;
             height: 38px;
             border-radius: 50%;
             background: radial-gradient(circle at 30% 30%, #ff6b6b, #d94b4b);
-            color: rgba(255,255,255,0.95);
+            color: rgba(255, 255, 255, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            box-shadow: inset 0 2px 0 rgba(255,255,255,0.4), 0 6px 12px rgba(0,0,0,0.25);
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.4), 0 6px 12px rgba(0, 0, 0, 0.25);
             user-select: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.1s;
+            touch-action: manipulation;
         }
-        .btn.b { background: radial-gradient(circle at 30% 30%, #7aa7ff, #557cd6); }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.2), 0 3px 6px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn.b {
+            background: radial-gradient(circle at 30% 30%, #7aa7ff, #557cd6);
+        }
 
         .speaker {
             width: 72px;
@@ -157,7 +266,7 @@
             background-image: radial-gradient(#6b7177 1.5px, transparent 2px);
             background-size: 8px 8px;
             background-position: 0 0;
-            filter: drop-shadow(0 1px 0 rgba(255,255,255,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.18));
+            filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.4)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.18));
         }
 
         .start-screen {
@@ -170,17 +279,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(255,255,255,0.85);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(2px);
         }
 
         .start-card {
-            background: rgba(0,0,0,0.75);
+            background: rgba(0, 0, 0, 0.75);
             color: #fff;
             padding: 28px 32px;
             border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
         }
 
         .start-btn {
@@ -194,9 +303,12 @@
             margin-top: 12px;
         }
 
-        .start-btn:hover { background: #45a049; }
+        .start-btn:hover {
+            background: #45a049;
+        }
     </style>
 </head>
+
 <body>
     <div class="game-container handheld">
         <h1>🐍 贪吃蛇游戏</h1>
@@ -204,18 +316,22 @@
             <div class="score">分数: <span id="score">0</span></div>
             <canvas id="gameCanvas" width="340" height="340"></canvas>
             <div class="controls">
-                使用方向键或WSAD控制 · 空格键重新开始
+                使用方向键/WASD/十字键控制 · 空格/A键重新开始
             </div>
         </div>
         <div class="handheld-row">
             <div class="dpad">
                 <div class="bar-h"></div>
                 <div class="bar-v"></div>
+                <button class="dpad-btn up" id="btnUp">▲</button>
+                <button class="dpad-btn down" id="btnDown">▼</button>
+                <button class="dpad-btn left" id="btnLeft">◀</button>
+                <button class="dpad-btn right" id="btnRight">▶</button>
             </div>
             <div class="speaker" aria-hidden="true"></div>
             <div class="buttons">
-                <div class="btn a">A</div>
-                <div class="btn b">B</div>
+                <button class="btn a">A</button>
+                <button class="btn b">B</button>
             </div>
         </div>
         <div class="game-over" id="gameOver">
@@ -245,7 +361,7 @@
         const tileCount = canvas.width / gridSize;
 
         let snake = [
-            {x: 10, y: 10}
+            { x: 10, y: 10 }
         ];
         let food = {};
         let dx = 0;
@@ -259,7 +375,7 @@
                 x: Math.floor(Math.random() * tileCount),
                 y: Math.floor(Math.random() * tileCount)
             };
-            
+
             // 确保食物不在蛇身上
             for (let segment of snake) {
                 if (segment.x === food.x && segment.y === food.y) {
@@ -296,7 +412,7 @@
             // 若未设置移动方向，则不移动且不进行碰撞检测（防止启动即结束）
             if (dx === 0 && dy === 0) return;
 
-            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
             // 检查墙壁碰撞
             if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
@@ -333,7 +449,7 @@
 
         // 重新开始游戏
         function restartGame() {
-            snake = [{x: 10, y: 10}];
+            snake = [{ x: 10, y: 10 }];
             dx = 0;
             dy = 0;
             score = 0;
@@ -362,35 +478,38 @@
             }
         }
 
+        // 统一的方向改变函数
+        function changeDirection(newDx, newDy) {
+            // 防止反向移动
+            if (newDx !== 0 && dx === -newDx) return;
+            if (newDy !== 0 && dy === -newDy) return;
+
+            dx = newDx;
+            dy = newDy;
+            hideStartScreen();
+        }
+
         // 键盘控制
         document.addEventListener('keydown', (e) => {
             startGameIfNeededByKeyboard(e);
             if (!gameRunning && e.code !== 'Space') return;
 
-            switch(e.code) {
+            switch (e.code) {
                 case 'ArrowUp':
-                    if (dy !== 1) {
-                        dx = 0;
-                        dy = -1;
-                    }
+                case 'KeyW':
+                    changeDirection(0, -1);
                     break;
                 case 'ArrowDown':
-                    if (dy !== -1) {
-                        dx = 0;
-                        dy = 1;
-                    }
+                case 'KeyS':
+                    changeDirection(0, 1);
                     break;
                 case 'ArrowLeft':
-                    if (dx !== 1) {
-                        dx = -1;
-                        dy = 0;
-                    }
+                case 'KeyA':
+                    changeDirection(-1, 0);
                     break;
                 case 'ArrowRight':
-                    if (dx !== -1) {
-                        dx = 1;
-                        dy = 0;
-                    }
+                case 'KeyD':
+                    changeDirection(1, 0);
                     break;
                 case 'Space':
                     e.preventDefault();
@@ -398,30 +517,44 @@
                         restartGame();
                     }
                     break;
-                case 'KeyW':
-                    if (dy !== 1) {
-                        dx = 0;
-                        dy = -1;
-                    }
-                    break;
-                case 'KeyS':
-                    if (dy !== -1) {
-                        dx = 0;
-                        dy = 1;
-                    }
-                    break;
-                case 'KeyA':
-                    if (dx !== 1) {
-                        dx = -1;
-                        dy = 0;
-                    }
-                    break;
-                case 'KeyD':
-                    if (dx !== -1) {
-                        dx = 1;
-                        dy = 0;
-                    }
-                    break;
+            }
+        });
+
+        // D-pad按钮控制
+        document.getElementById('btnUp').addEventListener('click', () => {
+            if (gameRunning || startScreenEl.style.display !== 'none') {
+                changeDirection(0, -1);
+            }
+        });
+
+        document.getElementById('btnDown').addEventListener('click', () => {
+            if (gameRunning || startScreenEl.style.display !== 'none') {
+                changeDirection(0, 1);
+            }
+        });
+
+        document.getElementById('btnLeft').addEventListener('click', () => {
+            if (gameRunning || startScreenEl.style.display !== 'none') {
+                changeDirection(-1, 0);
+            }
+        });
+
+        document.getElementById('btnRight').addEventListener('click', () => {
+            if (gameRunning || startScreenEl.style.display !== 'none') {
+                changeDirection(1, 0);
+            }
+        });
+
+        // A/B按钮功能
+        document.querySelector('.btn.a').addEventListener('click', () => {
+            if (!gameRunning) {
+                restartGame();
+            }
+        });
+
+        document.querySelector('.btn.b').addEventListener('click', () => {
+            if (startScreenEl.style.display !== 'none') {
+                startGameFromButton();
             }
         });
 
@@ -439,4 +572,5 @@
         drawGame();
     </script>
 </body>
+
 </html>
